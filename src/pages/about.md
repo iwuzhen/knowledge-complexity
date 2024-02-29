@@ -2,20 +2,44 @@
 title: About
 ---
 
-<div class="text-center">
-  <!-- You can use Vue components inside markdown -->
-  <div i-carbon-dicom-overlay class="text-4xl -mb-6 m-auto" />
-  <h3>About</h3>
-</div>
+# Q&A
+### 1. 数据来源？
 
-[Vitesse](https://github.com/antfu/vitesse) is an opinionated [Vite](https://github.com/vitejs/vite) starter template made by [@antfu](https://github.com/antfu) for mocking apps swiftly. With **file-based routing**, **components auto importing**, **markdown support**, I18n, PWA and uses **UnoCSS** for styling and icons.
+论文：来自 openalex 的约2.4亿篇论文。
 
-```js
-// syntax highlighting example
-function vitesse() {
-  const foo = 'bar'
-  console.log(foo)
-}
-```
+专利：约1.2亿的世界专利数据。
 
-Check out the [GitHub repo](https://github.com/antfu/vitesse) for more details.
+开源：约27万 Github 中的开源项目和其中超过 1400万的依赖关系。
+
+
+### 2. 论文是如何确定学科的?
+
+OpenAlex 对每篇论文都标注了 Concepts，可以通过 Concepts 确定论文的学科。
+
+### 3. 专利的 IPC 分类是什么含义?
+  > IPC 主分类的简要说明：
+  <br> A类：人类生活的必需品，例如食品、纺织品、家具、化妆品等。
+  <br> B类：人类生活的日常活动，例如运输、卫生、娱乐、体育等。
+  <br> C类：化学和冶金领域，例如化学制剂、颜料、金属合金等。
+  <br> D类：纺织和造纸领域，例如纺织品、纺织机械、纸张制品等。
+  <br> E类：建筑和固定结构领域，例如建筑物、道路、桥梁、管道等。
+  <br> F类：机械工程领域，例如发动机、机床、制冷设备、工具等。
+  <br> G类：物理领域，例如光学、声学、测量仪器、电子设备等。
+  <br> H类：电气领域，例如电路、电器、通信技术、计算机技术等。
+
+### 4. 专利统计用的是哪个时间？
+专利统计使用的是申请时间， 所以后期专利数量下降的一个原因是因为申请时间和公开时间的时间差，导致已经申请但是没有公开的专利没有被收录
+
+### 5. 专利数量为什么近年来大幅下降？
+根据专利的申请日进行统计，由于专利申请日与授权日存有时间差，导致已经申请但是还未被周全的专利未被收录 因此观察时间段的末期，专利数量有所下降。
+
+### 6. 什么是知识复杂度理论？
+知识复杂度是衡量国家（地区、城市等）知识能力的整体指标。可以反映一个国家在发表论文时所具备的能力（知识）
+
+### 7. 如何解读开源项目的知识复杂度和学科稀缺度结果？
+我们对开源项目的知识复杂度计算方法中使用到的 tag 数据存在争议，计算结果我们还会继续迭代。
+
+### 8. 实体指什么？
+知识图谱中的节点表示概念和实体，概念是抽象出来的事物，实体是具体的事物。
+gpc里的实体具体指的是知识图谱中出现的事物，即描述这些事物的字、词、短语和句子。
+

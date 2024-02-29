@@ -3,12 +3,325 @@ button:
   back: 返回
   go: 确定
   home: 首页
+  patent_count_switch_name: 专利数量
+  reference_count_switch_name: 文章数
+  reference_export_switch_name: 被引用
+  reference_import_switch_name: 引用
   toggle_dark: 切换深色模式
   toggle_langs: 切换语言
+# chart:
+#   academic_export_combine: '{countries} 被依赖的学科分布? ({years})'
+#   patent_ipc_reference_combine: What is the IPC combination in {countries} ? ({years})
+#   patent_ipc_export_combine: What is the IPC export in {countries} ? ({years})
+#   patent_ipc_import_combine: What is the IPC import in {countries} ? ({years})
+#   patent_country_export_combine: Which countries export in {countries} ? ({years})
+#   patent_country_import_combine: Which countries import in {countries} ? ({years})
+#   patent_stacked_ipc_reference_combine: What is the IPC combination in {countries} ? (1990-2020)
+#   patent_stacked_ipc_export_combine: What is the IPC export in {countries} ? (1990-2020)
+#   patent_stacked_ipc_import_combine: What is the IPC import in {countries} ? (1990-2020)
+#   patent_stacked_country_export_combine: Which countries export in {countries} ? (1990-2020)
+#   patent_stacked_country_import_combine: Which countries import in {countries} ? (1990-2020)
+chart:
+  academic_reference_combine: '{years}年 {countries}高校/机构发表论文学科分布' # 在 {countries} 发表的论文的学科构成 ? ({years}) # What is the combination of disciplines in {countries} ? ({years})
+  academic_export_combine: '{years}年 {countries}论文被哪些学科(他国)引用' #'{years}年 其他国家论文（分学科）引用 {countries}论文的情况' # '{years}年 {countries}高校/机构发表论文被他国引用情况（学科）' # 被 {countries} 依赖的其他国家论文的学科构成 ? ({years})   # What disciplines are exported from {countries} ? ({years})
+  academic_import_combine: '{years}年 {countries}引用了哪些学科(他国)的论文' # '{years}年 其他国家论文（分学科）被 {countries}论文引用的情况' # '{years}年 {countries}高校/机构发表论文引用他国情况（学科）' # 依赖 {countries} 的其他国家论文的学科构成 ? ({years}) # What disciplines are imported from {countries} ? ({years})
+  country_export_combine: '{countries} 论文被哪些国家引用 ? ({years})' # 哪些国家论文被 {countries} 引用 ? ({years})
+  country_import_combine: '{countries} 引用了哪些国家论文 ? ({years})' # 哪些国家论文引用 {countries} ? ({years})
+  
+  paper_stacked_academic_reference_combine: '1990-2020年 {countries}高校/机构发表论文学科分布趋势' # 在 {countries} 发表的论文的学科构成? (1990-2020)
+  paper_stacked_academic_export_combine: '1990-2020年 {countries}论文被哪些学科(他国)引用' # '1990-2020年 其他国家论文（分学科）引用 {countries}论文的情况趋势' # '1990-2020年 {countries}高校/机构发表论文被他国引用情况趋势（学科）' # 被 {countries} 依赖的其他国家论文的学科构成 ? (1990-2020)
+  paper_stacked_academic_import_combine: '1990-2020年 {countries}引用了哪些学科(他国)的论文' # '1990-2020年 其他国家论文（分学科）被 {countries}论文引用的情况趋势' # '1990-2020年 {countries}高校/机构发表论文引用他国情况趋势（学科）' # 依赖 {countries} 的其他国家论文的学科构成 ? (1990-2020)
+  paper_stacked_country_export_combine: '{countries} 论文被哪些国家引用 ? (1990-2020)' # 哪些国家的论文被 {countries} 依赖 ? (1990-2020)
+  paper_stacked_country_import_combine:  '{countries} 引用了哪些国家论文 ? (1990-2020)' # 哪些国家的论文依赖 {countries} ? (1990-2020)
+
+  tree_map_paper_subject_country_reference_combine: Which country combination in {subjects} ? ({years})
+  tree_map_paper_subject_country_export_combine: Which countries export {subjects} ? ({years})
+  tree_map_paper_subject_country_import_combine: Which countries import {subjects} ? ({years})
+
+  patent_ipc_reference_combine: '{years}年 {countries}公开专利中的 IPC 主分类构成分布?' # 在 {countries} 公开的专利中的 IPC 主分类构成 ? ({years}) # What is the IPC combination in {countries} ? ({years})
+  patent_ipc_export_combine: '{years}年 {countries}专利被哪些他国专利(IPC 分类)引用' #'{years}年 其他国家公开专利(IPC 主分类)引用{countries}专利的构成分布?' # What is the IPC export in {countries} ? ({years})
+  patent_ipc_import_combine: '{years}年 {countries}引用了哪些他国专利(IPC 分类)' # '{years}年 其他国家公开专利(IPC 主分类)被{countries}专利引用的构成分布?'
+  patent_country_export_combine: 哪些国家的专利引用 {countries} ? ({years})
+  patent_country_import_combine: '{countries} 引用了哪些国家的专利 ? ({years})'
+
+  patent_stacked_ipc_reference_combine: 1990-2020年 {countries}的公开专利中的 IPC 主分类构成分布趋势?
+  patent_stacked_ipc_export_combine: '1990-2020年 {countries}专利被哪些 IPC 分类(他国)引用' # 1990-2020年 其他国家公开专利(IPC 主分类)引用{countries}专利的构成分布趋势?
+  patent_stacked_ipc_import_combine: 1990-2020年 其他国家公开专利(IPC 主分类)被{countries}专利引用的构成分布趋势?
+  patent_stacked_country_export_combine: 哪些国家的专利引用{countries} ? (1990-2020)
+  patent_stacked_country_import_combine: '{countries} 引用了哪些国家的专利 ? (1990-2020)'
+country:
+  AD: 安道尔
+  AE: 阿拉伯联合酋长国
+  AF: 阿富汗
+  AG: 安提瓜和巴布达
+  AL: 阿尔巴尼亚
+  AM: 亚美尼亚
+  AO: 安哥拉
+  AR: 阿根廷
+  AT: 奥地利
+  AU: 澳大利亚
+  AW: 阿鲁巴
+  AX: 奥兰群岛
+  AZ: 阿塞拜疆
+  BA: 波斯尼亚和黑塞哥维那
+  BB: 巴巴多斯
+  BD: 孟加拉国
+  BE: 比利时
+  BF: 布基纳法索
+  BG: 保加利亚
+  BH: 巴林
+  BI: 布隆迪
+  BJ: 贝宁
+  BM: 百慕大
+  BN: 文莱
+  BO: 玻利维亚
+  BQ: 加勒比荷兰
+  BR: 巴西
+  BS: 巴哈马
+  BT: 不丹
+  BW: 博茨瓦纳
+  BY: 白俄罗斯
+  BZ: 伯利兹
+  CA: 加拿大
+  CD: 刚果(金)
+  CF: 中非共和国
+  CG: 刚果(布)
+  CH: 瑞士
+  CI: 科特迪瓦
+  CK: 库克群岛
+  CL: 智利
+  CM: 喀麦隆
+  CN: 中国
+  CO: 哥伦比亚
+  CR: 哥斯达黎加
+  CU: 古巴
+  CV: 佛得角
+  CW: 库拉索
+  CY: 塞浦路斯
+  CZ: 捷克共和国
+  DE: 德国
+  DJ: 吉布提
+  DK: 丹麦
+  DM: 多米尼克
+  DO: 多米尼加共和国
+  DZ: 阿尔及利亚
+  EC: 厄瓜多尔
+  EE: 爱沙尼亚
+  EG: 埃及
+  ER: 安立亚
+  ES: 西班牙
+  ET: 埃塞俄比亚
+  FI: 芬兰
+  FJ: 斐济
+  FK: 福克兰群岛
+  FM: 密克罗尼西亚
+  FO: 法罗群岛
+  FR: 法国
+  GA: 加蓬
+  GB: 英国
+  GD: 格林纳达
+  GE: 格鲁吉亚
+  GF: 法属圭亚那
+  GH: 加纳
+  GI: 直布罗陀
+  GL: 格陵兰
+  GM: 冈比亚
+  GN: 几内亚
+  GP: 关岛
+  GQ: 赤道几内亚
+  GR: 希腊
+  GT: 危地马拉
+  GW: 几内亚比绍
+  GY: 圭亚那
+  HK: 香港
+  HN: 宏都拉斯
+  HR: 克罗地亚
+  HT: 海地
+  HU: 匈牙利
+  ID: 印度尼西亚
+  IE: 爱尔兰
+  IL: 以色列
+  IM: 曼岛
+  IN: 印度
+  IQ: 伊拉克
+  IR: 伊朗
+  IS: 冰岛
+  IT: 意大利
+  JE: 泽西岛
+  JM: 牙买加
+  JO: 约旦
+  JP: 日本
+  KE: 肯尼亚
+  KG: 吉尔吉斯斯坦
+  KH: 加纳
+  KI: 基里巴斯
+  KM: 科摩罗
+  KN: 圣基茨和尼维斯
+  KP: 朝鲜
+  KR: 韩国
+  KW: 科威特
+  KY: 开曼群岛
+  KZ: 哈萨克斯坦
+  LA: 老挝
+  LB: 黎巴嫩
+  LC: 圣路西亚
+  LI: 列支敦士登
+  LK: 斯里兰卡
+  LR: 利比里亚
+  LS: 莱索托
+  LT: 立陶宛
+  LU: 卢森堡
+  LV: 拉脱维亚
+  LY: 利比亚
+  MA: 摩洛哥
+  MC: 摩纳哥
+  MD: 摩尔多瓦
+  ME: 黑山
+  MG: 马达加斯加
+  MH: 马绍尔群岛
+  MK: 北马其顿
+  ML: 马里
+  MM: 缅甸(毛里塔尼亚)
+  MN: 蒙古
+  MO: 澳门
+  MQ: 马提尼克
+  MR: 毛里塔尼亚
+  MS: 蒙特塞拉特
+  MT: 马耳他
+  MU: 毛里求斯
+  MV: 马尔代夫
+  MW: 马拉维
+  MX: 墨西哥
+  MY: 马来西亚
+  MZ: 莫桑比克
+  NA: 纳米比亚
+  NC: 新喀里多尼亚
+  NE: 尼日尔
+  NG: 尼日利亚
+  NI: 尼加拉瓜
+  NL: 荷兰
+  'NO': 挪威
+  NP: 尼泊尔
+  NR: 努鲁
+  NU: 纽埃岛
+  NZ: 新西兰
+  OM: 阿曼
+  PA: 巴拿马
+  PE: 秘鲁
+  PF: 法属波利尼西亚
+  PG: 巴布亚新几内亚
+  PH: 菲律宾
+  PK: 巴基斯坦
+  PL: 波兰
+  PR: 波多黎各
+  PS: 巴勒斯坦
+  PT: 葡萄牙
+  PW: 帕劳
+  PY: 巴拉圭
+  QA: 卡塔尔
+  RE: 留尼汪岛
+  RO: 罗马尼亚
+  RS: 塞尔维亚
+  RU: 俄罗斯
+  RW: 卢旺达
+  SA: 沙特阿拉伯
+  SB: 所罗门群岛
+  SC: 塞舌尔
+  SD: 苏丹
+  SE: 瑞典
+  SG: 新加坡
+  SI: 斯洛文尼亚
+  SJ: 斯瓦尔巴和扬马延岛
+  SK: 斯洛伐克
+  SL: 塞拉利昂
+  SM: 圣马力诺
+  SN: 塞内加尔
+  SO: 索马里
+  SR: 苏里南
+  SS: 南苏丹
+  ST: 圣多美和普林西比
+  SV: 萨尔瓦多
+  SX: 荷属圣马丁
+  SY: 叙利亚
+  SZ: 伊斯瓦蒂尼
+  TC: 特克斯和凯科斯群岛
+  TD: 乍得
+  TG: 多哥
+  TH: 泰国
+  TJ: 塔吉克斯坦
+  TL: 东帝汶
+  TM: 突厥罗尼斯坦
+  TN: 突尼斯
+  TO: 东加
+  TR: 土耳其
+  TT: 特立尼达和多巴哥
+  TV: 图瓦卢
+  TW: 中国台湾
+  TZ: 坦桑尼亚
+  UA: 乌克兰
+  UG: 乌干达
+  US: 美国
+  UY: 乌拉圭
+  UZ: 乌兹别克斯坦
+  VA: 梵蒂冈城
+  VC: 圣文森特和格林纳丁斯
+  VE: 委内瑞拉
+  VG: 英属维尔京群岛
+  VI: 美属维尔京群岛
+  VN: 越南
+  VU: 瓦努阿图
+  WS: 萨摩亚
+  XK: 科索沃
+  YE: 也门
+  ZA: 南非
+  ZM: 赞比亚
+  ZW: 津巴布韦
 intro:
-  desc: 固执己见的 Vite 项目模板
+  desc: >-
+    通过
+    KnowledgeCircuit，探索知识的复杂性。我们的平台连接了各种领域的知识，帮助您导航现代世界的复杂性。扩展您的思维，连接各种信息，解锁知识复杂性的力量。
   dynamic-route: 动态路由演示
   hi: 你好，{name}
-  aka: 也叫
+  slogan: 深入探究知识的多层次、多维度，打开认知的新世界。
   whats-your-name: 输入你的名字
+menu:
+  countries: 国家
+  eci: 知识复杂度排名（论文） # 国家知识复杂度排名
+  github_eci: 知识复杂度（Github）排名
+  github_group: Github
+  github_pci: 学科稀缺度（Github）排名
+  paperStacked: 国家学科占比趋势
+  paperTreeMap: 国家学科占比分布
+  paper_group: 论文
+  patentStacked: 国家 IPC 占比趋势
+  patentTreeMap: 国家 IPC 占比分布
+  patent_group: 专利
+  pci: 学科稀缺度排名 #学科知识复杂度排名
+  profiles: 资料
+  ranking: 排名
+  reference: 各国发表论文排名 #国家论文的引用排名
+  subjects: 学科
+  tools: 工具
 not-found: 未找到页面
+ranking:
+  export: 被引用
+  import: 引用
+  release: 文章数
+site:
+  detail_1: 在广袤的知识宇宙中,思想如何相连?在知识星球,我们绘制学术论文和开源软件的坐标,揭示跨国学者和全球代码仓之间隐藏的联系。
+  detail_2: >-
+    我们的互动知识图集成两个领域:数百万篇论文构成的学术世界,与连接着成千上万软件项目的开源宇宙。我们提供可视化分析,追踪思想在国家、机构、作者和程序员之间的流动。
+  detail_3: >-
+    以全局视野审视知识蓝图。发现未知的模式和新的联结。探索跨学科的新兴知识群落。按关键词、主题、国家或开发者社区进行搜索和分析。我们联系碎片,让你立体抓住宏观和微观。
+  invite: 加入我们的冒险之旅,探索知识、创造力和发现的新地平线!
+  paper_knowledge_complexity: 论文的知识复杂度
+  paper_knowledge_complexity_detail: 论文的知识复杂度
+  patent_knowledge_complexity: 专利的知识复杂度
+  patent_knowledge_complexity_detail: 专利的知识复杂度排名
+  slogan: ' 探索学术和创新的互联关系。'
+  subtitle: 知识复杂性网站是一个可视化展示学术研究与开源开发复杂网络的平台。洞察全球视野,发现知识的新的交汇点。
+  title: 知识复杂度
+tools:
+  paper_tree_map_country: 国家
+  paper_tree_map_subject: 学科
+

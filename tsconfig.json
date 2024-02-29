@@ -33,7 +33,8 @@
     "plugins": [
       "@vue-macros/volar/define-models",
       "@vue-macros/volar/define-slots"
-    ]
+    ],
+    "types": ["naive-ui/volar"]
   },
   "exclude": ["dist", "node_modules", "cypress"]
 }

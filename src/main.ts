@@ -6,9 +6,16 @@ import App from './App.vue'
 import type { UserModule } from './types'
 import generatedRoutes from '~pages'
 
-import '@unocss/reset/tailwind.css'
+// import '@unocss/reset/tailwind.css'
+import 'the-new-css-reset/css/reset.css'
 import './styles/main.css'
 import 'uno.css'
+
+// 通用字体
+import 'vfonts/Lato.css'
+
+// 等宽字体
+import 'vfonts/FiraCode.css'
 
 const routes = setupLayouts(generatedRoutes)
 
