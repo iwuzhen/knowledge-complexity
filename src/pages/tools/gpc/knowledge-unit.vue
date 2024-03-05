@@ -53,6 +53,10 @@ const tableColumns: any = ref([
 const tableData = ref([])
 const pageTags = ref('ABXY')
 
+watch(tableData,()=>{
+  pagination.page = 1
+})
+
 function rowClassName(row: any) {
   if (row.distance <= 0.3)
     return 'close'

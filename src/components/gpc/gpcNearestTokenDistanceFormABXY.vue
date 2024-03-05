@@ -10,14 +10,31 @@ const emit = defineEmits(['update:links'])
 const token_a = ref({ title: 'China', id: 5405 })
 const token_b = ref({ title: 'Nanjing', id: 21791 })
 const token_x = ref({ title: 'Shanghai', id: 27643 })
+const tolerance = ref(0.05)
 
 const token_a_title = ref(token_a.value.title)
 const token_b_title = ref(token_b.value.title)
 const token_x_title = ref(token_x.value.title)
 
-const tolerance = ref(0.05)
+const examplesQuery = [
+  {token_a: { title: 'Microsoft', id: 19001 },token_b: { title: 'Apple Inc.', id: 856 }, token_x:{ title: 'Google', id: 1092923 }, tolerance: 0.1},
+  {token_a: { title: 'Integrated circuit', id: 15150 },token_b: { title: 'Graphics processing unit', id: 390214 }, token_x:{ title: 'Central processing unit', id: 5218 }, tolerance: 0.1},
+  {token_a: { title: 'Television', id: 14617 },token_b: { title: 'Magazine', id: 21001 }, token_x:{ title: 'Book', id: 3778 }, tolerance: 0.1}
+]
+
+function quickSearch(item:any){
+  token_a.value = {...item.token_a}
+  token_b.value = {...item.token_b}
+  token_x.value = {...item.token_x}
+  tolerance.value = item.tolerance
+  token_a_title.value = item.token_a.title
+  token_b_title.value = item.token_b.title
+  token_x_title.value = item.token_x.title
+  result_handle()
+}
+
 // const token_b = ref('Nanjing')
-// const token_a_id = ref(5405)
+// const token_x_id = ref(5405)
 // const token_b_id = ref(21791)
 
 const autoComplexOptions_a = ref([])
@@ -174,5 +191,13 @@ onMounted(() => {
         计算
       </n-button>
     </n-form>
+    <n-divider dashed>
+    example
+  </n-divider>
+  <n-space>
+    <n-button v-for="item in examplesQuery" :key="item.id" quaternary type="primary" @click="quickSearch(item)">
+      {{ item.token_a.title }},{{ item.token_b.title }},{{ item.token_x.title }}
+    </n-button>
+  </n-space>
   </n-spin>
 </template>
