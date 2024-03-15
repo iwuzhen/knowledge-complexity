@@ -2,9 +2,32 @@
 // import { useMessage } from 'naive-ui'
 
 // const message = useMessage()
+const pagination = reactive({
+  pageSize: 10,
+  page: 1,
+  onChange: (page: number) => {
+    pagination.page = page
+  },
+  onUpdatePageSize: (pageSize: number) => {
+    pagination.pageSize = pageSize
+    pagination.page = 1
+  },
+  itemCount: 0,
+  prefix({ itemCount }: any) {
+    return `Total is ${itemCount}.`
+  },
+})
 
 // table
 const tableColumns: any = ref([
+  {
+    title: 'rank',
+    key: 'rank',
+    width: 60,
+    render: (_: any, index: any) => {
+      return index + 1 + (pagination.page - 1) * pagination.pageSize
+    },
+  },
   {
     title: 'Entity A',
     key: 'token_a',
@@ -25,6 +48,10 @@ const tableColumns: any = ref([
 ])
 const tableData = ref([])
 const pageTags = ref('Nearest Phrase')
+watch(tableData, () => {
+  pagination.page = 1
+  pagination.itemCount = tableData.value.length
+})
 
 function rowClassName(row: any) {
   if (row.distance <= 0.3)
@@ -53,10 +80,10 @@ function rowClassName(row: any) {
             :single-line="false"
             :columns="tableColumns"
             :data="tableData"
-            :pagination="false"
             :bordered="true"
             :max-height="500"
             :row-class-name="rowClassName"
+            :pagination="pagination"
             virtual-scroll striped
           />
         </n-tab-pane>

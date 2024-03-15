@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { useRequest, useWatcher } from 'alova'
+import _ from 'lodash'
 import { get_abxy_token, get_suggestion } from '~/api/methods/gpc'
+import { all_info_store, put_info_store, rm_info_store } from '~/api/methods/info'
 
 defineProps<{
   links: any
@@ -15,27 +17,63 @@ const tolerance = ref(0.05)
 const token_a_title = ref(token_a.value.title)
 const token_b_title = ref(token_b.value.title)
 const token_x_title = ref(token_x.value.title)
+const favoriteFlag = ref(false)
 
-const examplesQuery = [
-  {token_a: { title: 'Microsoft', id: 19001 },token_b: { title: 'Apple Inc.', id: 856 }, token_x:{ title: 'Google', id: 1092923 }, tolerance: 0.1},
-  {token_a: { title: 'Integrated circuit', id: 15150 },token_b: { title: 'Graphics processing unit', id: 390214 }, token_x:{ title: 'Central processing unit', id: 5218 }, tolerance: 0.1},
-  {token_a: { title: 'Television', id: 14617 },token_b: { title: 'Magazine', id: 21001 }, token_x:{ title: 'Book', id: 3778 }, tolerance: 0.1}
+const favoritesQuery_base = [
+  { token_a: { title: 'Microsoft', id: 19001 }, token_b: { title: 'Apple Inc.', id: 856 }, token_x: { title: 'Google', id: 1092923 }, tolerance: 0.1 },
+  { token_a: { title: 'Integrated circuit', id: 15150 }, token_b: { title: 'Graphics processing unit', id: 390214 }, token_x: { title: 'Central processing unit', id: 5218 }, tolerance: 0.1 },
+  { token_a: { title: 'Television', id: 14617 }, token_b: { title: 'Magazine', id: 21001 }, token_x: { title: 'Book', id: 3778 }, tolerance: 0.1 },
 ]
 
-function quickSearch(item:any){
-  token_a.value = {...item.token_a}
-  token_b.value = {...item.token_b}
-  token_x.value = {...item.token_x}
+const { data: favoritesQuery } = useWatcher(
+  () => all_info_store('ku-favorite'),
+  [token_a_title],
+  {
+    immediate: true,
+    debounce: 200,
+    initialData: favoritesQuery_base,
+  },
+)
+
+const { send: rm_favorite } = useRequest(data => rm_info_store('ku-favorite', data), { immediate: false })
+const { send: add_favorite } = useRequest(data => put_info_store('ku-favorite', data), { immediate: false })
+
+function handleSwitchChange(value: boolean) {
+  const currentData = _.cloneDeep({ token_a: token_a.value, token_b: token_b.value, token_x: token_x.value, tolerance: tolerance.value })
+  if (value === false) {
+    // remove favorite
+    const tmp = _.cloneDeep(favoritesQuery.value)
+    favoritesQuery.value = (tmp as any).filter((item: any) => !_.isEqual(item, currentData))
+    rm_favorite(currentData)
+  }
+  else {
+    // add favorite
+    (favoritesQuery.value as any).push(currentData)
+    add_favorite(currentData)
+  }
+}
+
+watchEffect(() => {
+  const currentData = { token_a: token_a.value, token_b: token_b.value, token_x: token_x.value, tolerance: tolerance.value }
+  let flag = false
+  for (const obj of (favoritesQuery.value as any)) {
+    if (_.isEqual(obj, currentData))
+      flag = true
+  }
+  favoriteFlag.value = flag
+})
+
+function quickSearch(item: any) {
+  token_a.value = { ...item.token_a }
+  token_b.value = { ...item.token_b }
+  token_x.value = { ...item.token_x }
   tolerance.value = item.tolerance
   token_a_title.value = item.token_a.title
   token_b_title.value = item.token_b.title
   token_x_title.value = item.token_x.title
+  favoriteFlag.value = true
   result_handle()
 }
-
-// const token_b = ref('Nanjing')
-// const token_x_id = ref(5405)
-// const token_b_id = ref(21791)
 
 const autoComplexOptions_a = ref([])
 const autoComplexOptions_b = ref([])
@@ -159,7 +197,19 @@ onMounted(() => {
     <n-alert type="info" :show-icon="false" mb-1>
       Knowledge Unit, 四边形法则, 由 A, B, X 推理出 Y 集合。
     </n-alert>
+    <div text-right>
+      <n-switch v-model:value="favoriteFlag" @update:value="handleSwitchChange">
+        <template #checked>
+          favorite
+        </template>
+        <template #unchecked>
+          favorite
+        </template>
+      </n-switch>
+    </div>
     <knowledgeUnitSquare :token-a="token_a.title" :token-b="token_b.title" :token-x="token_x.title" :token-y-set-size="XSize" :distance1="D1" :distance2="D2" :tolerance="tolerance" />
+
+    <n-divider dashed />
     <n-form label-placement="left">
       <n-form-item path="token a" label="实体 A:" mt-3>
         <n-auto-complete
@@ -192,12 +242,12 @@ onMounted(() => {
       </n-button>
     </n-form>
     <n-divider dashed>
-    example
-  </n-divider>
-  <n-space>
-    <n-button v-for="item in examplesQuery" :key="item.id" quaternary type="primary" @click="quickSearch(item)">
-      {{ item.token_a.title }},{{ item.token_b.title }},{{ item.token_x.title }}
-    </n-button>
-  </n-space>
+      favorite
+    </n-divider>
+    <n-space>
+      <n-button v-for="item in (favoritesQuery as any)" :key="`${item.token_a.id}-${item.token_b.id}-${item.token_x.id}`" quaternary type="primary" @click="quickSearch(item)">
+        {{ item.token_a.title }},{{ item.token_b.title }},{{ item.token_x.title }}
+      </n-button>
+    </n-space>
   </n-spin>
 </template>

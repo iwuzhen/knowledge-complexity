@@ -13,6 +13,10 @@ const pagination = reactive({
     pagination.pageSize = pageSize
     pagination.page = 1
   },
+  itemCount: 0,
+  prefix({ itemCount }: any) {
+    return `Total is ${itemCount}.`
+  },
 })
 
 // table
@@ -53,8 +57,9 @@ const tableColumns: any = ref([
 const tableData = ref([])
 const pageTags = ref('ABXY')
 
-watch(tableData,()=>{
+watch(tableData, () => {
   pagination.page = 1
+  pagination.itemCount = tableData.value.length
 })
 
 function rowClassName(row: any) {

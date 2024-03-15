@@ -22,6 +22,16 @@ export const gpcAlova = createAlova({
 })
 
 // user alova instance
+export const infoAlova = createAlova({
+  baseURL: 'https://apikg.dev.knogen.com:10444/api/info',
+  statesHook: VueHook,
+  requestAdapter: GlobalFetch(),
+  // 全局的响应拦截器
+  responded: response => response.json(),
+})
+
+
+// user alova instance
 export const wikiNikeAlova = createAlova({
   baseURL: 'https://wiki.nikepai.com/api',
   statesHook: VueHook,
