@@ -249,18 +249,18 @@ watchEffect(() => {
               icon: renderIcon('i-carbon-number-1'),
               key: 'ranking-countries-eci',
             },
-            // {
-            //   icon: renderIcon('i-carbon-number-2'),
-            //   label: () =>
-            //     h(
-            //       RouterLink,
-            //       {
-            //         to: '/rankings/pci',
-            //       },
-            //       { default: () => t('menu.pci') },
-            //     ),
-            //   key: 'ranking-countries-pci',
-            // },
+            {
+              icon: renderIcon('i-carbon-number-2'),
+              label: () =>
+                h(
+                  RouterLink,
+                  {
+                    to: '/rankings/pci',
+                  },
+                  { default: () => t('menu.pci') },
+                ),
+              key: 'ranking-countries-pci',
+            },
           ],
         },
         {
